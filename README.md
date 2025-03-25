@@ -96,9 +96,9 @@ Os clientes deverão poder consultar seu histórico de compras com o detalhe dos
 |--|--|
 |Lista de Produtos| 0,75 |
 |Página individual de Produto|0,50|
-|Carrinho de Compras | 2,25 |
+|Carrinho de Compras | 2,50 |
 |Cadastro de Usuário, autenticação e autorização | 1,00 |
-|Finalizar compra | 2,25 |
+|Finalizar compra | 2,50 |
 |Listar os pedidos realizados | 1,00 |
 |Permitir filtrar os produtos por categoria | 0,50 |
 |Permitir cadastrar múltiplos endereços | 0,50 |
