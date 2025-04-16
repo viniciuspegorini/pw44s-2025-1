@@ -1,12 +1,11 @@
 package br.edu.utfpr.pb.pw44s.server.controller;
 
 import br.edu.utfpr.pb.pw44s.server.error.ApiError;
-import br.edu.utfpr.pb.pw44s.server.model.User;
-import br.edu.utfpr.pb.pw44s.server.service.UserService;
-import br.edu.utfpr.pb.pw44s.server.shared.GenericResponse;
+import br.edu.utfpr.pb.pw44s.server.model.Product;
+import br.edu.utfpr.pb.pw44s.server.service.IProductService;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -16,23 +15,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping("users")
-public class UserController {
+@RequestMapping("products")
+public class ProductController {
 
-    private final UserService userService;
+    private final IProductService productService;
 
-    public UserController(UserService userService) {
-        this.userService = userService;
+    public ProductController(IProductService productService) {
+        this.productService = productService;
     }
 
     @PostMapping
-    public GenericResponse createUser(@RequestBody @Valid User user) {
-
-        userService.save(user);
-        
-        GenericResponse response = new GenericResponse();
-        response.setMessage("User created");
-        return response;
+    public ResponseEntity<Product> save(Product product) {
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(this.productService.save(product));
     }
 
     @ExceptionHandler({MethodArgumentNotValidException.class})
@@ -52,6 +47,4 @@ public class UserController {
                 request.getServletPath(),
                 errors);
     }
-
-    
 }
