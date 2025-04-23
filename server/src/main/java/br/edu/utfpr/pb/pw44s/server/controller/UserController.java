@@ -1,11 +1,13 @@
 package br.edu.utfpr.pb.pw44s.server.controller;
 
+import br.edu.utfpr.pb.pw44s.server.dto.UserDTO;
 import br.edu.utfpr.pb.pw44s.server.error.ApiError;
 import br.edu.utfpr.pb.pw44s.server.model.User;
 import br.edu.utfpr.pb.pw44s.server.service.UserService;
 import br.edu.utfpr.pb.pw44s.server.shared.GenericResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -20,38 +22,22 @@ import java.util.Map;
 public class UserController {
 
     private final UserService userService;
+    private final ModelMapper modelMapper;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService,
+                          ModelMapper modelMapper) {
         this.userService = userService;
+        this.modelMapper = modelMapper;
     }
 
     @PostMapping
-    public GenericResponse createUser(@RequestBody @Valid User user) {
-
-        userService.save(user);
+    public GenericResponse createUser(@RequestBody @Valid UserDTO user) {
+        
+        userService.save( modelMapper.map(user, User.class) );
         
         GenericResponse response = new GenericResponse();
         response.setMessage("User created");
         return response;
     }
-
-    @ExceptionHandler({MethodArgumentNotValidException.class})
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ApiError handleException(MethodArgumentNotValidException exception,
-                                    HttpServletRequest request) {
-        // Recupero o objeto com o conjunto de erros
-        BindingResult bindingResult = exception.getBindingResult();
-        Map<String, String> errors = new HashMap<>();
-        // Monto o array com nome do atributo: mensagem de erro
-        for (FieldError fieldError : bindingResult.getFieldErrors()) {
-            errors.put(fieldError.getField(), fieldError.getDefaultMessage());
-        }
-        return new ApiError(
-                HttpStatus.BAD_REQUEST.value(),
-                "Validation Error!",
-                request.getServletPath(),
-                errors);
-    }
-
     
 }

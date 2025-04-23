@@ -16,13 +16,13 @@ public class ApiError {
     private String url;
     private Map<String, String> validationErrors;
     
-    public ApiError(int status, String message, String url) {
+    public ApiError(String message, String url, int status) {
         this.status = status;
         this.message = message;
         this.url = url;
     }
-    
-    public ApiError(int status, String message, String url, 
+
+    public ApiError(int status, String message, String url,
                     Map<String, String> validationErrors) {
         this.status = status;
         this.message = message;
