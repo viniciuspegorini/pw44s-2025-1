@@ -89,21 +89,4 @@ public class CategoryController {
                             categoryService.findAll(pageRequest));
     }
 
-    @ExceptionHandler({MethodArgumentNotValidException.class})
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ApiError handleException(MethodArgumentNotValidException exception,
-                                    HttpServletRequest request) {
-        // Recupero o objeto com o conjunto de erros
-        BindingResult bindingResult = exception.getBindingResult();
-        Map<String, String> errors = new HashMap<>();
-        // Monto o array com nome do atributo: mensagem de erro
-        for (FieldError fieldError : bindingResult.getFieldErrors()) {
-            errors.put(fieldError.getField(), fieldError.getDefaultMessage());
-        }
-        return new ApiError(
-                HttpStatus.BAD_REQUEST.value(),
-                "Validation Error!",
-                request.getServletPath(),
-                errors);
-    }
 }
