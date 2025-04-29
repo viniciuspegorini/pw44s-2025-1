@@ -33,7 +33,8 @@ public class UserController {
     @PostMapping
     public GenericResponse createUser(@RequestBody @Valid UserDTO user) {
         
-        userService.save( modelMapper.map(user, User.class) );
+        User newUser = modelMapper.map(user, User.class);
+        userService.save( newUser );
         
         GenericResponse response = new GenericResponse();
         response.setMessage("User created");

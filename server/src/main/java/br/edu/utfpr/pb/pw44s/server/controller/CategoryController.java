@@ -1,23 +1,16 @@
 package br.edu.utfpr.pb.pw44s.server.controller;
 
-import br.edu.utfpr.pb.pw44s.server.error.ApiError;
 import br.edu.utfpr.pb.pw44s.server.model.Category;
 import br.edu.utfpr.pb.pw44s.server.service.ICategoryService;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("categories")
@@ -51,7 +44,7 @@ public class CategoryController {
     // http://localhost:8080/categories?id=1
     @GetMapping("{id}")
     public ResponseEntity<Category> findById(@PathVariable Long id) {
-        Category category = categoryService.findById(id);
+        Category category = categoryService.findOne(id);
         if (category != null) {
             return ResponseEntity.status(HttpStatus.OK).body(category);
         } else {
@@ -62,7 +55,7 @@ public class CategoryController {
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) {
-        categoryService.delete(categoryService.findById(id));
+        categoryService.delete(id);
     }
 
     @GetMapping("count")
