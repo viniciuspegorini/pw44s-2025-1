@@ -1,34 +1,32 @@
 package br.edu.utfpr.pb.pw44s.server.controller;
 
-import br.edu.utfpr.pb.pw44s.server.error.ApiError;
+import br.edu.utfpr.pb.pw44s.server.dto.ProductDTO;
 import br.edu.utfpr.pb.pw44s.server.model.Product;
+import br.edu.utfpr.pb.pw44s.server.service.ICrudService;
 import br.edu.utfpr.pb.pw44s.server.service.IProductService;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.validation.Valid;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
-import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.modelmapper.ModelMapper;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.Map;
 
 @RestController
 @RequestMapping("products")
-public class ProductController {
-
+public class ProductController extends CrudController<Product, ProductDTO, Long> {
     private final IProductService productService;
+    private final ModelMapper modelMapper;
 
-    public ProductController(IProductService productService) {
+    public ProductController(IProductService productService, ModelMapper modelMapper) {
+        super(Product.class, ProductDTO.class);
         this.productService = productService;
+        this.modelMapper = modelMapper;
     }
 
-    @PostMapping
-    public ResponseEntity<Product> save(@RequestBody @Valid Product product) {
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .body(this.productService.save(product));
+    @Override
+    protected ICrudService<Product, Long> getService() {
+        return this.productService;
     }
-    
+
+    @Override
+    public ModelMapper getModelMapper() {
+        return modelMapper;
+    }
 }
