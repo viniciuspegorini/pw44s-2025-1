@@ -13,7 +13,7 @@ A API REST será desenvolvida utilizando o *framework*  **Spring**.
 	- Eclipe for JavaEE
 	- VSCode, etc...
 - SDBG:
-	- Postgresql
+	- PostgresSQL
 - Ferramenta para testar a API:
 	- Postman
 	- Insomnia
@@ -52,8 +52,19 @@ Neste projeto, os alunos terão a oportunidade de aplicar seus conhecimentos em 
 
 ## Datas de entrega:
 
-#### Primeira entrega: 05/05/2025 e 06/05/2025
+#### Primeira entrega: 12/05/2025 e 13/05/2025
 Na primeira entrega deve estar pronto apenas o lado **servidor** da aplicação, ou seja, a API REST desenvolvida com o *framework* Spring Boot. A apresentação dos *endpoints* da API será via requisições HTTP utilizando o Postman ou Insomnia, juntamente com a defesa do código-fonte desenvolvido.
+
+Funcionalidades do *back-end* que devem estar prontas:
+
+ - Lista de categorias
+ - Lista de produtos
+ - Produto pelo ID
+ - Cadastro de Usuário
+ - Autenticação
+ - Cadastro de Endereços (do usuário autenticado)
+ - Cadastro de Pedidos (do usuário autenticado)
+ - Lista de Pedidos (do usuário autenticado)
 
 #### Entrega final: 30/06/2025 e 01/07/2025
 Nessa entrega as aplicações cliente e servidor devem ser apresentadas. O servidor pode ter sofrido modificações durante o processo de desenvolvimento do cliente, por isso deve ser apresentado novamente. Os projetos cliente e servidor deverão ser executados e as funcionalidades desenvolvidas deverão ser apresentadas juntamente com a defesa do código-fonte desenvolvido.
