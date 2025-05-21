@@ -1,10 +1,16 @@
 import './App.css'
+import {HomePage} from "@/pages/home";
+import {RegisterPage} from "@/pages/register";
+import {LoginPage} from "@/pages/login";
 
 function App() {
 
     return (
         <>
-            <h1>Bem vindo!</h1>
+            <HomePage />
+            <RegisterPage />
+
+            <LoginPage />
         </>
     )
 }
