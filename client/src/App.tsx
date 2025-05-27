@@ -1,16 +1,11 @@
 import './App.css'
-import {HomePage} from "@/pages/home";
-import {RegisterPage} from "@/pages/register";
-import {LoginPage} from "@/pages/login";
+import {AppRoutes} from "@/routes/app-routes";
 
 function App() {
 
     return (
         <>
-            <HomePage />
-            <RegisterPage />
-
-            <LoginPage />
+            <AppRoutes />
         </>
     )
 }
