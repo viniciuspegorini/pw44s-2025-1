@@ -8,6 +8,8 @@ import {CategoryListPage} from "@/pages/category-list";
 import {CategoryFormPage} from "@/pages/category-form";
 import {ProductListPage} from "@/pages/product-list";
 import {ProductFormPage} from "@/pages/product-form";
+import { NotFound } from "@/pages/not-found";
+import {ProductView} from "@/pages/product-view";
 
 export function AppRoutes() {
   return (
@@ -29,8 +31,13 @@ export function AppRoutes() {
                 <Route path="/products" element={<ProductListPage />} />
                 <Route  path="/products/new"  element={<ProductFormPage  />} />
                 <Route  path="/products/:id"  element={<ProductFormPage  />} />
+                
+                <Route path="/products/view" element={<ProductView />} />
             </Route>
         </Route>
+
+        {/* catch all */}
+        <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }

@@ -61,6 +61,11 @@ const TopMenu: React.FC = () => {
                         icon: "pi pi-plus",
                         command: () => navigate("/products/new"),
                     },
+                    {
+                        label: "View",
+                        icon: "pi pi-search",
+                        command: () => navigate("/products/view"),
+                    },
                 ],
             },
         ]
@@ -72,7 +77,7 @@ const TopMenu: React.FC = () => {
             onClick={() => navigate("/")}
         >
             <img
-                src="/assets/images/ut  fpr-logo-nb.png"
+                src="/assets/images/utfpr-logo-nb.png"
                 alt="Logo"
                 height={32}
                 style={{ objectFit: "contain" }}
